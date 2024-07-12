@@ -1,0 +1,153 @@
+name: Line Notify Scheduler
+
+on:
+  schedule:
+    # 日本時間の20:00に通知を送る
+    - cron: '0 11 * * 6'
+    # 日本時間の20:30に通知を送る
+    - cron: '30 11 * * 6'
+    # 日本時間の20:45に通知を送る
+    - cron: '45 11 * * 6'
+    # 日本時間の20:50に通知を送る
+    - cron: '50 11 * * 6'
+    # 日本時間の20:55に通知を送る
+    - cron: '55 11 * * 6'
+
+jobs:
+  notify_1_hour:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 11 * * 6'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send Line Notification
+        env:
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python send_notifications.py "Atcoderのコンテストあと1時間です。"
+
+  notify_30_minutes:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '30 11 * * 6'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send Line Notification
+        env:
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python send_notifications.py "Atcoderのコンテストまであと30分です。"
+
+  notify_15_minutes:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '45 11 * * 6'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send Line Notification
+        env:
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python send_notifications.py "Atcoderのコンテストまであと15分です。"
+
+  notify_10_minutes:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '50 11 * * 6'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send Line Notification
+        env:
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python send_notifications.py "Atcoderのコンテストまであと10分です。"
+
+  notify_5_minutes:
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '55 11 * * 6'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Send Line Notification
+        env:
+          LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+        run: python send_notifications.py "Atcoderのコンテストまであと5分です。"
+
+
+
+# Pythonで細かいところ記述するなら以下のようになる
+# name: Line Notify Scheduler
+
+# on:
+#   schedule:
+#     # 日本時間の20:00に通知を送る
+#     - cron: '0 11 * * 6'
+#     # 日本時間の20:30に通知を送る
+#     - cron: '30 11 * * 6'
+#     # 日本時間の20:45に通知を送る
+#     - cron: '45 11 * * 6'
+#     # 日本時間の20:50に通知を送る
+#     - cron: '50 11 * * 6'
+#     # 日本時間の20:55に通知を送る
+#     - cron: '55 11 * * 6'
+
+# jobs:
+#   notify:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v2
+      
+#       - name: Setup Python
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: '3.x'
+
+#       - name: Install dependencies
+#         run: pip install requests
+
+#       - name: Send Line Notifications
+#         env:
+#           LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
+#         run: python send_notifications.py
