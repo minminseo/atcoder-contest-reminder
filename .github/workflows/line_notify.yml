@@ -32,7 +32,7 @@ jobs:
       - name: Send Line Notification
         env:
           LINE_NOTIFY_TOKEN: ${{ secrets.LINE_NOTIFY_TOKEN }}
-        run: python send_notifications.py "Atcoderのコンテストあと1時間です。"
+        run: python send_notifications.py "Atcoderのコンテストまであと1時間です。"
 
   notify_30_minutes:
     runs-on: ubuntu-latest
